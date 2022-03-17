@@ -8,8 +8,8 @@ The walkthrough:
 
 To run the game, execute emacs like this:
 -- % cd PA1assignment
--- % ls atmuseum
--- atmuseum
+-- % ls savedgame
+-- savedgame
 -- % emacs -batch -l dunnet
 -- 
 -- Dead end
@@ -22,7 +22,7 @@ To run the game, execute emacs like this:
 
 Now that the game is running, we'll load up the part that we'll be using
 for this homework:
--- >restore atmuseum
+-- >restore savedgame
 -- Done.
 -- Museum station
 -- You are at the Museum subway stop.  A passage leads off to the north.
