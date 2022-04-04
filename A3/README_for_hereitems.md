@@ -103,6 +103,7 @@ There is a/license
 ```
 
 So now its usefulness should become clear -- it's being used to put some words before the matching file names.
+
 > Note: there are easier ways to put words in front of each line, but we haven't yet learned those easier ways.
 
 Consider how this `ls T*/*` idea could help in getting the following output:
@@ -136,27 +137,33 @@ alias hereitems='(rm -f ~/D/T*/*;cp `ls -d * | grep __?__ | tr \\n \ ` ~/D/T* &>
 Let's break down what these parts do:
 
 - (rm -f ~/D/T*/*;
+  
   - This part empties any files that a previous "Hereitems" might have left in the "There is a" directory.
   - It also uses "(" to start a subshell, so that the we will be able to temporarily change the directory inside of the subshell, and then revert back to the original directory when the ")" is reached.
 
 - `ls -d * | grep __?__ | tr \\n \ `
+  
   - This part was discussed on lines 38-52, above.
 
 - cp `...` ~/D/T* &>~/X
+  
   - This part copies the files that you want to tell the player about, from the current directory into the "There is a" directory.
 
 > Note: This is a copy, not a move.
 > Note: Not all of the synonyms are copied, only the noun that we want to use in the display message.
 
 - cd ~/D;ls T*/* 2>~/X |
+  
   - This part lists out the displayed items, with "There is a" at the front.
   - This part was discussed on lines 56-111, above.
 
 - __1__ | tr -d \\n | tr @ \\n |
+  
   - This part is a very complicated way to turn the article "a" into "an".
   - More details of how to do this will be described below, with an example.
 
 - __2__)
+  
   - This part adds the " here." on the end of each line.
   - More details of how to do this will be described below, with an example.
 
@@ -265,19 +272,25 @@ So, how to do __1__?
 It is a pipe of four commands: __a__|__b__|__c__|__d__:
 
 1. __a__: Use "u2d" to put a symbol at the end of each input line.
+
 2. __b__: Use "tr" to turn that symbol into a "@". Now the ends of the lines have a marker symbol.
+
 3. __c__: Use grep to split each line at the "/".
+   
    - But how can grep split a line?
      - Well, the `-o` flag can make it print only the matching part of the line, and the `-e` flag can let you match multiple expressions.
      - So you need one pattern for the first half of the line, and another for the second half.
      - Also, we want to display line numbers. (We don't really want to know line number, but we do want a ":" to go at the front of each line.  Consider: we do not yet know many other ways to put things the front of each input line.)
+
 4. __d__: Use "grep" to match to two patterns:
+   
    1. All the stuff after the ":" if the next character is not an "a", and
+   
    2. The ":" and all the stuff after if, if the next character is an "a".
-
-    Also, you will only print the matching expression.
-
-    > Note: you don't need to worry about any other vowels, because they don't happen in this part of the game (eg, we don't have "an egg").
+      
+      Also, you will only print the matching expression.
+      
+      > Note: you don't need to worry about any other vowels, because they don't happen in this part of the game (eg, we don't have "an egg").
 
 Finally, how to do __2__?
 This to involves a complex series of "u2d" and "tr" commands.

@@ -9,7 +9,10 @@ alias i='(cd ~/D/inv>~/X;echo -n "You currently have: "; ls [abfgjklrs]*[^s] 2> 
 As we can see above, this new version of the "i" command has all of the code from the PA2 solution, but it also has added some new code in two places.
 To understand the difference, it helps to show the effect of the difference.
 To show this, my version of PA3 (you don't need to put it into your version) has an alias for the PA2's "i" also.
+翻：新的 i 跟舊的 i 有一點不一樣喔。
+
 Let's compare their outputs:
+
 
 ```bash
 % bash
@@ -62,7 +65,7 @@ Let's see that (assuming the directory is still ~/D/inv, from the running the co
   ruby
   shovel
   silver
-  
+
   >iWith__1__implementedButWith__2__JustPassingOnItsInput
   You currently have: acid, amethyst, board, bone, bracelet, food, glycerine, jar, key, lamp, license, ruby, shovel, silver
   .
@@ -86,12 +89,13 @@ This is harder.
 What we want is to remove the final two characters from the received text line.
 But to accomplish this, we can only use commands that we have already discussed in lecture.
 How to do it?
-Well, the "cut" command seems promising.
+Well, the `cut` command seems promising.
 It can remove specific characters from the input line.
-For example, if we use the proper arguments and flags, we can tell "cut" to remove the FIRST TWO characters of the line.
+For example, if we use the proper arguments and flags, we can tell `cut` to remove the FIRST TWO characters of the line.
 But, how to get it to remove the LAST TWO characters?
 This is harder, because we do not know how many characters will be in the line (since the contents of the inventory can change).
-The answer is to use the "rev" command to move the characters from the end of the line over to the front, then to run "cut", and then to use "rev" again to put the line back in proper order.
+The answer is to use the `rev` command to move the characters from the end of the line over to the front, then to run `cut`, and then to use `rev` again to put the line back in proper order.
+
 > Lecture 1, slide 21, introduced "rev", calling it one of the "commands which can be useful, but which I won't put on the exam".
 > So the homework can use "rev", I just won't put it on the exam.
 
@@ -113,5 +117,6 @@ jar, key, lamp, license, ruby, shovel, silver.
 
 From the above, we see that the __2__ moved the "." onto the same line as the items, and it fixed the formatting, so a long list of items nicely wraps onto two lines (i.e., it doesn't split words, but instead splits lines at spaces).
 You will accomplish this by using "fold".
+
 > As with "rev", so also was "fold" introduced in Lecture 1 slide 21, as one of the "commands which can be useful, but which I won't put on the exam."
 > So the homework can use "fold", I just won't put it on the exam.

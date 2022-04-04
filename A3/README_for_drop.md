@@ -22,11 +22,13 @@ Well each blank handles one of the three such objects.
 Each of the blanks has the same two part task:
 
 1) Determine if ~/D/obj contains one of the synonyms of the given object.
+   
    - But you must use "grep" to make this determination, and you can only use one regular expression.
    - And how to know if you have designed a good regular expression?
      - Type `cd ~/D/objs; ls | grep <your expression>` and see if it lists all of the synonyms of that object, and nothing else.
 
 2) If so, replace the contents of `~/D/obj` with a wildcard pattern that matches to all of the synonyms.
+   
    - See the idea? If `~/D/obj` were to contain a pattern, then the alias's `mv ~/D/inv/$(cat ~/D/obj)` will move all the synonyms, just like we
      want it to do.
    - But you must replace `~/D/obj` with only a single wildcard pattern.
