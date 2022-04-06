@@ -88,16 +88,16 @@ From the above, we see that we will implement `get all`, just like in the real
 game.
 The above also shows some different outputs under different scenarios:
 
-- `You cannot take that.`,
-    - The objects that can't be take.
+- `You cannot take that.`
+  - The objects that can't be take.
 - `I see nothing special about that.`,
-    - Cat the things.
+  - Cat the things.
 - `Nothing to take.`,
-    - Use `get all`, but don't have objects can be get.
+  - Use `get all`, but don't have objects can be get.
 - `I do not see that here.`,
-    - Get specified objects, but the thing doesn't here.
+  - Get specified objects, but the thing doesn't here.
 - `Taken: amethyst`.
-    - Get all the things, and get the amethyst.
+  - Get all the things, and get the amethyst.
 
 You should take the time to understand why each of the messages were displayed.
 

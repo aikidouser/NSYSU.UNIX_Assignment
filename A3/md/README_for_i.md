@@ -3,7 +3,9 @@
 Your new "i" command will look like this:
 
 ```bash
-alias i='(cd ~/D/inv>~/X;echo -n "You currently have: "; ls [abfgjklrs]*[^s] 2> ~/X | __1__)|__2__;echo'
+alias i='(cd ~/D/inv>~/X;echo -n "You currently have: ";\
+          ls [abfgjklrs]*[^s] 2> ~/X | __1__)|__2__;\
+          echo'
 ```
 
 As we can see above, this new version of the "i" command has all of the code from the PA2 solution, but it also has added some new code in two places.
@@ -12,7 +14,6 @@ To show this, my version of PA3 (you don't need to put it into your version) has
 翻：新的 i 跟舊的 i 有一點不一樣喔。
 
 Let's compare their outputs:
-
 
 ```bash
 % bash
@@ -60,7 +61,7 @@ Let's see that (assuming the directory is still ~/D/inv, from the running the co
   glycerine
   jar
   key
-  lamp
+  lamp    
   license
   ruby
   shovel
@@ -73,7 +74,8 @@ Let's see that (assuming the directory is still ~/D/inv, from the running the co
   >
 ```
 
-THE DISCUSSION OF __1__:
+## THE DISCUSSION OF \_\_1\_\_:
+
 From the above, we see that the __1__ is responsible for separating the items by commas.
 This is a three-step process:
 
@@ -101,7 +103,8 @@ The answer is to use the `rev` command to move the characters from the end of th
 
 As for 3): Just "echo .". But don't pipe the input into this echo.
 
-THE DISCUSSION OF __2__:
+## THE DISCUSSION OF \_\_2\_\_:
+
 To see what the __2__ does, let's see its effect:
 
 ```bash

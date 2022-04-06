@@ -3,7 +3,10 @@
 The format of the alias for the drop command is:
 
 ```bash
-alias drop='(cat >../obj; (cd ..;__1__; __2__; __3__); cd ->~/X; mv ~/D/inv/`cat ~/D/obj` . && echo Dropped. || echo You do not have that.)2>~/X <'
+alias drop='(cat >../obj; (cd ..;__1__; __2__; __3__); \
+             cd ->~/X; mv ~/D/inv/`cat ~/D/obj` . 
+             && echo Dropped. 
+             || echo You do not have that.)2>~/X <'
 ```
 
 As you can see, the basic behavior of the command is to try to move the file indicated by `~/D/obj` into the room directory.
@@ -14,7 +17,7 @@ There are three blanks to fill in.
 These blanks are for handling the three getable objects that have synonyms (other objects, like the "palm trees" or the "mail drop" also have synonyms, but such other objects won't ever be in you ~/D/inv directory, because they are **not getable** (ie, you can't pick them up)).
 
 So there only three getable objects with aliases.
-For each of these, we cannot just do the above `alias's "mv ~/D/inv/$(cat ~/D/obj) ."`, because we must move both of the synonyms.
+For each of these, we cannot just do the above alias's `mv ~/D/inv/$(cat ~/D/obj) .`, because we must move both of the synonyms.
 For example, if you type either "drop emerald" or "drop bracelet", then the alias should move BOTH the "emerald" and "bracelet" files from the inventory to the current room.
 
 So how do __1__, __2__, and __3__ accomplish this?

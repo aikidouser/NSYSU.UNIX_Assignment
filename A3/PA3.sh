@@ -1,8 +1,19 @@
+#!/usr/bin/bash
 ls ~/X &> /dev/null || ln -s /dev/null ~/X
-ls ~/D &> /dev/null || ln -s ~/PA2assignment/dunnet ~/D
+ls ~/D &> /dev/null || ln -s ~/dunnet ~/D
 
-alias x='(cat >../obj;cd ->~/X;cat `cat ~/D/obj` || (cd ~/D/inv && cat `cat ~/D/obj`)||echo "I do not see that here.")2>~/X < '
-alias i='(cd ~/D/inv>~/X;echo -n "You currently have: "; ls [abfgjklrs]*[^s] 2> ~/X || echo)'
+alias u2d='sed s/\$/\\r/'
+
+alias x='(cat >../obj;\
+          cd ->~/X;\
+          cat `cat ~/D/obj` || (cd ~/D/inv && cat `cat ~/D/obj`) || echo "I do not see that here.")2>~/X < '
+alias i='(cd ~/D/inv>~/X;\
+          echo -n "You currently have: ";\
+          ls [abfgjklrs]*[^s] 2> ~/X | u2d | tr "\r\n" ", " | rev | cut -c 1-2 --complement | rev && echo .) | tr -d "\n" | fold -s;\
+          echo'
+# alias drop='(cat >../obj; (cd ..;__1__; __2__; __3__); \
+#             cd ->~/X; mv ~/D/inv/`cat ~/D/obj` . && echo Dropped. \
+#             || echo You do not have that.)2>~/X <'
 
 alias hereitems='ls *[duh-ov]?[dreply] &> ~/X || ls [able][acme]* &> ~/X && echo Here there is: `ls *[duh-ov]?[dreply] [able][acme]* 2>~/X`'
 
@@ -21,7 +32,7 @@ alias sw='cd ->~/X;cd sw 2>~/X && disp||echo >temp; rm ../ne/temp 2>~/X &&cd .. 
 alias ne='cd ->~/X;cd ne 2>~/X && disp||cat ne 2>~/X||echo >temp; rm ../sw/temp 2>~/X &&cd .. && disp; cleanup'
 alias se='cd ->~/X;cat se 2>~/X&&exit; cd se 2>~/X && disp||echo >temp; rm ../nw/temp 2>~/X &&cd .. && disp; cleanup'
 
-cd ~/PA2assignment
+cd ~/
 rm -rf dunnet
 tar -xf PA1.tar
 cd ~/D/rooms

@@ -9,6 +9,7 @@
 - Submission method: Submit one file named "PA3.sh".
 
 - Getting help:
+  
   - Professor office hours: Monday 12:00 - 2:00 either in room 5012 or room 9037, and Friday 10:00 - 12:00 in room 9037.  Or by email at stevewhaga@yahoo.com (please use English).
   - The TA is also available to answer your questions.
   - Questions about the assignment can be posted to the Discussion Forum.
