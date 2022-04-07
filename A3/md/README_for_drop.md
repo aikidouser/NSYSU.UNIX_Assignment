@@ -20,7 +20,7 @@ So there only three getable objects with aliases.
 For each of these, we cannot just do the above alias's `mv ~/D/inv/$(cat ~/D/obj) .`, because we must move both of the synonyms.
 For example, if you type either "drop emerald" or "drop bracelet", then the alias should move BOTH the "emerald" and "bracelet" files from the inventory to the current room.
 
-So how do __1__, __2__, and __3__ accomplish this?
+So how do \_\_1__, \_\_2__, and \_\_3__ accomplish this?
 Well each blank handles one of the three such objects.
 Each of the blanks has the same two part task:
 
@@ -29,6 +29,17 @@ Each of the blanks has the same two part task:
    - But you must use "grep" to make this determination, and you can only use one regular expression.
    - And how to know if you have designed a good regular expression?
      - Type `cd ~/D/objs; ls | grep <your expression>` and see if it lists all of the synonyms of that object, and nothing else.
+     
+     ```bash
+     # emerald bracelet
+     $ ls | grep ".*ra.*l.*"
+     
+     # nitric acid
+     $ ls | grep ".*i[cd]$"
+     
+     # board card chip cpu
+     $ ls | grep "^[bc][^le].*[dup]$"
+     ```
 
 2) If so, replace the contents of `~/D/obj` with a wildcard pattern that matches to all of the synonyms.
    

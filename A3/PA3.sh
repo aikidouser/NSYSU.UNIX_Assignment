@@ -11,9 +11,14 @@ alias i='(cd ~/D/inv>~/X;\
           echo -n "You currently have: ";\
           ls [abfgjklrs]*[^s] 2> ~/X | u2d | tr "\r\n" ", " | rev | cut -c 1-2 --complement | rev && echo .) | tr -d "\n" | fold -s;\
           echo'
-# alias drop='(cat >../obj; (cd ..;__1__; __2__; __3__); \
-#             cd ->~/X; mv ~/D/inv/`cat ~/D/obj` . && echo Dropped. \
-#             || echo You do not have that.)2>~/X <'
+alias drop='(cat >../obj; (cd ..; \
+                           cat obj | grep ".*ra.*l.*" &> ~/X && echo *ra*l* > obj; \
+                           cat obj | grep ".*i[cd]$" &> ~/X && echo *i[cd] > obj; \
+                           cat obj | grep "^[bc][^le].*[dup]$" &> ~/X && echo [bc][^le]*[dup] > obj); \
+            cd ->~/X; \
+            mv ~/D/inv/`cat ~/D/obj` . \
+            && echo Dropped. \
+            || echo You do not have that.)2>~/X <'
 
 alias hereitems='ls *[duh-ov]?[dreply] &> ~/X || ls [able][acme]* &> ~/X && echo Here there is: `ls *[duh-ov]?[dreply] [able][acme]* 2>~/X`'
 
