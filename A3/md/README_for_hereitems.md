@@ -14,7 +14,7 @@ To begin discussing how the "hereitems" command needs to work, let's recall how 
 ```
 
 As we see above, "hereitems" was called from inside the "disp" command, and it listed some of the objects in the current room.
-The displayed objects were all the getable objects, plus the boulder and the bear.
+The displayed objects were all the <mark>getable</mark> objects, plus the **boulder** and the **bear**.
 We also see, above, that two `ls` commands were used because it was not possible to create a single pattern to list exactly the right items.
 So, to try out PA2's two patterns:
 
@@ -42,24 +42,39 @@ So, to try out PA2's two patterns:
 
 So it did work.
 But in this new programming assignment, we now know about grep and regular expressions.
-Can it be done with a single regular expression? Yes:
+Can it be done with a single regular expression? 
+
+Yes:
 
 ```bash
-  % cd ~/PA2assignment/allroomdirsandfile
-  % ls -d * | grep __?__ | tr \\n \ ; echo
-  acid amethyst bear board bone boulder bracelet food garbage glycerine lamp license ruby shovel silver
-  %
+% cd ~/PA2assignment/allroomdirsandfile
+% ls -d * | grep __?__ | tr \\n \ ; echo
+acid amethyst bear board bone boulder bracelet food garbage glycerine lamp license ruby shovel silver
+
+$ ls -d * | grep "^[abfglrs][cmeoraliuh][ieanuorymcbl].\{0,5\}[^ns]$"
 ```
 
+> 使用 Extended Regular Expressions 有 2 種方法: `egrep`,  `grep -E`
+> 
+> 而因此處強制使用 `grep` 且不能使用 flag，因此只能在 Extended 的符號前加上反斜線
+> 
+> > **Basic vs Extended Regular Expressions**
+> > 
+> > In basic regular expressions the meta-characters **?**, **+**, **{**, **|**, **(**, and **)** lose their special meaning; instead use the backslash versions **\?**, **\\+**, **\\{**, **\\|**, **\\(**, and **\\)**.
+
 Not only is the above output correct, but it is better than the PA2 solution, because the noun "bracelet" displayed instead of PA2's "emerald", and the "board" displayed, instead of PA2's "chip".
-Looking in more detail at the commands we typed above, we see an "ls -d *". The "ls" needed this "-d" flag to prevent it from listing the contents of any subdirectories.
 
-There are rules for the "grep __?__": You must use "grep" and you can't give "grep" any flags.
-Also "__?__" must be a single regular expression.
+Looking in more detail at the commands we typed above, we see an `ls -d *`. 
 
-So we now understand about what the "grep __?__" does.
+The `ls` needed this `-d` flag to prevent it from listing the contents of any subdirectories.
 
-The next topic to discuss is the way "ls" displays the subdirectory contents.
+There are rules for the `grep __?__`: You must use `grep` and you can't give `grep`any flags.
+Also `__?__` must be a single regular expression.
+
+So we now understand about what the `grep __?__` does.
+
+The next topic to discuss is the way `ls` displays the subdirectory contents.
+
 Consider:
 
 ```bash
@@ -74,8 +89,11 @@ Consider:
 ```
 
 From the above, we see that the path to the subdirectory appears in front of the matching file names.
-When the output of the "ls" is then piped to a `cat` (or to a `grep ^`), then each of those matching files display on their own lines.
+
+When the output of the `ls` is then piped to a `cat` (or to a `grep ^`), then each of those matching files display on their own lines.
+
 What is the point of this? Well consider the new provided PA1.tar file.
+
 If you expand it, you will see:
 
 ```bash
@@ -138,16 +156,16 @@ Let's break down what these parts do:
 
 - (rm -f ~/D/T*/*;
   
-  - This part empties any files that a previous "Hereitems" might have left in the "There is a" directory.
-  - It also uses "(" to start a subshell, so that the we will be able to temporarily change the directory inside of the subshell, and then revert back to the original directory when the ")" is reached.
+  - This part empties any files that a previous `Hereitems` might have left in the `There is a` directory.
+  - It also uses `(` to start a subshell, so that the we will be able to temporarily change the directory inside of the subshell, and then revert back to the original directory when the `)` is reached.
 
 - `ls -d * | grep __?__ | tr \\n \ `
   
   - This part was discussed on lines 38-52, above.
 
-- cp `...` ~/D/T* &>~/X
+- `cp $(...) ~/D/T* &>~/X`
   
-  - This part copies the files that you want to tell the player about, from the current directory into the "There is a" directory.
+  - This part copies the files that you want to tell the player about, from the current directory into the `There is a` directory.
 
 > Note: This is a copy, not a move.
 > Note: Not all of the synonyms are copied, only the noun that we want to use in the display message.
@@ -244,7 +262,7 @@ Here we can see exactly what input __1__ receives, and what __1__ produces:
 ```
 
 Clearly, it has put a ":" in exactly those spots where an "n" is needed.
-But How did it find those spots? Well, let's remove the "|tr -d \\n | tr @ \\n":
+But How did it find those spots? Well, let's remove the `|tr -d \\n | tr @ \\n`:
 
 ```bash
   >ls T*/* | cat
@@ -269,20 +287,20 @@ We see that each of the four input lines has become two output lines, with a "@"
 We notice that the place where each line is broken is right after the "a" -- and consider that the place where the "n" of "an" is inserted is also right after that "a".
 
 So, how to do __1__?
-It is a pipe of four commands: __a__|__b__|__c__|__d__:
+It is a pipe of four commands: \_\_a__|\_\_b__|\_\_c__|\_\_d__:
 
-1. __a__: Use "u2d" to put a symbol at the end of each input line.
+1. \_\_a__: Use `u2d` to put a symbol at the end of each input line.
 
-2. __b__: Use "tr" to turn that symbol into a "@". Now the ends of the lines have a marker symbol.
+2. \_\_b__: Use `tr` to turn that symbol into a `@`. Now the ends of the lines have a marker symbol.
 
-3. __c__: Use grep to split each line at the "/".
+3. \_\_c__: Use grep to split each line at the `/`.
    
    - But how can grep split a line?
      - Well, the `-o` flag can make it print only the matching part of the line, and the `-e` flag can let you match multiple expressions.
      - So you need one pattern for the first half of the line, and another for the second half.
      - Also, we want to display line numbers. (We don't really want to know line number, but we do want a ":" to go at the front of each line.  Consider: we do not yet know many other ways to put things the front of each input line.)
 
-4. __d__: Use "grep" to match to two patterns:
+4. \_\_d__: Use "grep" to match to two patterns:
    
    1. All the stuff after the ":" if the next character is not an "a", and
    
