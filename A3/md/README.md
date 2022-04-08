@@ -41,7 +41,7 @@ To start understanding the assignment,
 2. Then you should implement the easier aliases first.
 3. Therefore, first do the "i" alias and check that it works.
 4. Then do the "drop" alias.
-5. Then do the "get" alias.
+5. Then do the "get" alias.PA
 6. Then do the "hereitems" alias.
 
 Good luck. Please email me questions (in English) at stevewhaga@yahoo.com.

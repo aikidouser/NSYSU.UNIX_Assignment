@@ -19,6 +19,22 @@ alias drop='(cat >../obj; (cd ..; \
             mv ~/D/inv/`cat ~/D/obj` . \
             && echo Dropped. \
             || echo You do not have that.)2>~/X <'
+alias get='(cat >../obj; \
+            cd ->~/X; (mv [ablefnsrc][hiacmoru]?[^lihsop]* *[chijka][pinaem][prupey] ~/D/get &>~/X; \
+                       ls `cat ~/D/obj` &> ~/X && echo "You cannot take that." \
+                       || (cd ~/D/get; cat ~/D/obj | grep "all" \
+                           && ([[ `ls -A` ]] \
+                               && ls | xargs echo "Taken:" | fold -s; \
+                               || echo "Nothing to take.") \
+                       || (ls ~/D/get/`cat ~/D/obj` &> ~/X && echo "Taken." || echo "I do not see that here."))); \
+            (cd ~/D; \
+             cat obj | grep ".*ra.*l.*" &> ~/X && echo *ra*l* > obj; \
+             cat obj | grep ".*i[cd]$" &> ~/X && echo *i[cd] > obj; \
+             cat obj | grep "^[bc][^le].*[dup]$" &> ~/X && echo [bc][^le]*[dup] > obj; \
+             cat obj | grep "all" &> ~/X && echo "*" > obj; \
+             cd get; \
+             mv `cat ../obj` ../inv)&>~/X; \
+             mv ~/D/get/* .)2>~/X <'
 
 alias hereitems='ls *[duh-ov]?[dreply] &> ~/X || ls [able][acme]* &> ~/X && echo Here there is: `ls *[duh-ov]?[dreply] [able][acme]* 2>~/X`'
 
