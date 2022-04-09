@@ -1,8 +1,8 @@
 #!/usr/bin/bash
 ls ~/X &> /dev/null || ln -s /dev/null ~/X
-ls ~/D &> /dev/null || ln -s ~/dunnet ~/D
+ls ~/D &> /dev/null || ln -s ~/PA3assignment/dunnet ~/D
 
-alias u2d='sed s/\$/\\r/'
+# alias u2d='sed s/\$/\\r/'
 
 alias x='(cat >../obj;\
           cd ->~/X;\
@@ -56,7 +56,7 @@ alias sw='cd ->~/X;cd sw 2>~/X && disp||echo >temp; rm ../ne/temp 2>~/X &&cd .. 
 alias ne='cd ->~/X;cd ne 2>~/X && disp||cat ne 2>~/X||echo >temp; rm ../sw/temp 2>~/X &&cd .. && disp; cleanup'
 alias se='cd ->~/X;cat se 2>~/X&&exit; cd se 2>~/X && disp||echo >temp; rm ../nw/temp 2>~/X &&cd .. && disp; cleanup'
 
-cd ~/
+cd ~/PA3assignment
 rm -rf dunnet
 tar -xf PA1.tar
 cd ~/D/rooms
