@@ -73,6 +73,8 @@ Also `__?__` must be a single regular expression.
 
 So we now understand about what the `grep __?__` does.
 
+---
+
 The next topic to discuss is the way `ls` displays the subdirectory contents.
 
 Consider:
@@ -154,7 +156,7 @@ alias hereitems='(rm -f ~/D/T*/*;cp `ls -d * | grep __?__ | tr \\n \ ` ~/D/T* &>
 
 Let's break down what these parts do:
 
-- (rm -f ~/D/T*/*;
+- `(rm -f ~/D/T*/*;`
   
   - This part empties any files that a previous `Hereitems` might have left in the `There is a` directory.
   - It also uses `(` to start a subshell, so that the we will be able to temporarily change the directory inside of the subshell, and then revert back to the original directory when the `)` is reached.
@@ -170,17 +172,17 @@ Let's break down what these parts do:
 > Note: This is a copy, not a move.
 > Note: Not all of the synonyms are copied, only the noun that we want to use in the display message.
 
-- cd ~/D;ls T*/* 2>~/X |
+- `cd ~/D;ls T*/* 2>~/X |`
   
   - This part lists out the displayed items, with "There is a" at the front.
   - This part was discussed on lines 56-111, above.
 
-- __1__ | tr -d \\n | tr @ \\n |
+- `__1__ | tr -d \\n | tr @ \\n |`
   
   - This part is a very complicated way to turn the article "a" into "an".
   - More details of how to do this will be described below, with an example.
 
-- __2__)
+- `__2__)`
   
   - This part adds the " here." on the end of each line.
   - More details of how to do this will be described below, with an example.
@@ -286,7 +288,7 @@ We see that each of the four input lines has become two output lines, with a "@"
 
 We notice that the place where each line is broken is right after the "a" -- and consider that the place where the "n" of "an" is inserted is also right after that "a".
 
-So, how to do __1__?
+So, how to do \_\_1__?
 It is a pipe of four commands: \_\_a__|\_\_b__|\_\_c__|\_\_d__:
 
 1. \_\_a__: Use `u2d` to put a symbol at the end of each input line.
@@ -298,7 +300,8 @@ It is a pipe of four commands: \_\_a__|\_\_b__|\_\_c__|\_\_d__:
    - But how can grep split a line?
      - Well, the `-o` flag can make it print only the matching part of the line, and the `-e` flag can let you match multiple expressions.
      - So you need one pattern for the first half of the line, and another for the second half.
-     - Also, we want to display line numbers. (We don't really want to know line number, but we do want a ":" to go at the front of each line.  Consider: we do not yet know many other ways to put things the front of each input line.)
+     - Also, we want to display line numbers. (We don't really want to know line number, but we do want a ":" to go at the front of each line.  
+       - Consider: we do not yet know many other ways to put things the front of each input line.)
 
 4. \_\_d__: Use "grep" to match to two patterns:
    
@@ -310,10 +313,10 @@ It is a pipe of four commands: \_\_a__|\_\_b__|\_\_c__|\_\_d__:
       
       > Note: you don't need to worry about any other vowels, because they don't happen in this part of the game (eg, we don't have "an egg").
 
-Finally, how to do __2__?
+Finally, how to do \_\_2__?
 This to involves a complex series of "u2d" and "tr" commands.
 ("u2d" is the easiest way we know, so far, to put something at the end of each line.)
-To understand __2__ better, consider its input and output:
+To understand \_\_2__ better, consider its input and output:
 
 ```bash
   >ls T*/* | __1__|tr -d \\n | tr @ \\n

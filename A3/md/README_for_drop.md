@@ -4,8 +4,8 @@ The format of the alias for the drop command is:
 
 ```bash
 alias drop='(cat >../obj; (cd ..;__1__; __2__; __3__); \
-             cd ->~/X; mv ~/D/inv/`cat ~/D/obj` . 
-             && echo Dropped. 
+             cd ->~/X; mv ~/D/inv/`cat ~/D/obj` . \
+             && echo Dropped. \
              || echo You do not have that.)2>~/X <'
 ```
 
@@ -27,7 +27,9 @@ Each of the blanks has the same two part task:
 1) Determine if ~/D/obj contains one of the synonyms of the given object.
    
    - But you must use "grep" to make this determination, and you can only use one regular expression.
+   
    - And how to know if you have designed a good regular expression?
+     
      - Type `cd ~/D/objs; ls | grep <your expression>` and see if it lists all of the synonyms of that object, and nothing else.
      
      ```bash

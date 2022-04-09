@@ -15,16 +15,16 @@ alias drop='(cat >../obj; (cd ..; \
                            cat obj | grep ".*ra.*l.*" &> ~/X && echo *ra*l* > obj; \
                            cat obj | grep ".*i[cd]$" &> ~/X && echo *i[cd] > obj; \
                            cat obj | grep "^[bc][^le].*[dup]$" &> ~/X && echo [bc][^le]*[dup] > obj); \
-            cd ->~/X; \
-            mv ~/D/inv/`cat ~/D/obj` . \
-            && echo Dropped. \
-            || echo You do not have that.)2>~/X <'
+             cd ->~/X; \
+             mv ~/D/inv/`cat ~/D/obj` . \
+             && echo Dropped. \
+             || echo You do not have that.)2>~/X <'
 alias get='(cat >../obj; \
             cd ->~/X; (mv [ablefnsrc][hiacmoru]?[^lihsop]* *[chijka][pinaem][prupey] ~/D/get &>~/X; \
                        ls `cat ~/D/obj` &> ~/X && echo "You cannot take that." \
-                       || (cd ~/D/get; cat ~/D/obj | grep "all" \
+                       || (cd ~/D/get; cat ~/D/obj | grep "all" &> ~/X \
                            && ([[ `ls -A` ]] \
-                               && ls | xargs echo "Taken:" | fold -s; \
+                               && ls | xargs echo "Taken:" | fold -s \
                                || echo "Nothing to take.") \
                        || (ls ~/D/get/`cat ~/D/obj` &> ~/X && echo "Taken." || echo "I do not see that here."))); \
             (cd ~/D; \
@@ -36,7 +36,10 @@ alias get='(cat >../obj; \
              mv `cat ../obj` ../inv)&>~/X; \
              mv ~/D/get/* .)2>~/X <'
 
-alias hereitems='ls *[duh-ov]?[dreply] &> ~/X || ls [able][acme]* &> ~/X && echo Here there is: `ls *[duh-ov]?[dreply] [able][acme]* 2>~/X`'
+alias hereitems='(rm -f ~/D/T*/*; \
+                  cp `ls -d * | grep "^[abfglrs][cmeoraliuh][ieanuorymcbl].\{0,5\}[^ns]$" | tr \\n \ ` ~/D/T* &>~/X; \
+                  cd ~/D; \
+                  ls T*/* 2>~/X | u2d | tr "\r" "@" | grep -o -n -e "There is a" -e "/.*" | grep -o -e "T.*" -e ":/a.*" -e "/.*" | tr -d \\n | tr @ \\n | tr ":" "n" | tr "/" " " | u2d | tr "\r" " " | u2d | tr "\r" "h" | u2d | tr "\r" "e" | u2d | tr "\r" "r" | u2d | tr "\r" "e" | u2d | tr "\r" ".")'
 
 alias disp='(ls .v &>~/X && head -1 de*||cat de*;echo >.v;hereitems;ls>~/X)'
 alias l='(cd ->~/X;rm .v;disp)'
