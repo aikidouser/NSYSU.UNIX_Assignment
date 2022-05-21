@@ -1,9 +1,9 @@
 ls ~/X >& /dev/null || ln -s /dev/null ~/X
 rm -f ~/D >&/dev/null; ln -s ~/PA4assignment/PA4dunnet ~/D
 
-#alias hereitems '__1__' <==See README_PA4_hereitems for how to do this __1__.
+alias hereitems 'ls [abfgjklrs]*[^tg][pterodactyl] | sed "s/^\(ac\|gl\)/packet of &/;s/ acid/ nitric&/;s/^\(am\|ru\).*/valuable &/;s/"\^\$"/glass jar/;s/^board/CPU card/;s/bear/ferocious &/;s/bone/dinosaur &/;s/boulder/large &/;s/bracelet/emerald &/;s/key/shiny brass &/;s/lamp/& nearby./;s/license/bus driver"\`"s &/;s/silver/& bar/;s/.*[^:]"\$"/There is a &/;s/a \(food\)/some \1/;s/[^.:]"\$"/& here./;s/a \([aeiou]\)/an \1/;s/\(jar\):/The \1 contains:/" | tr \\n @ | sed -n "s/The jar contains:@"\$"//;s/\(:@\)\(.*@\)/\1     \2/;s/\(:.*acid here\.@\)\(T\)/\1     \2/;s/@There is a blackboard//;s/@/\n/gp"'
 
-#alias invitems '__2__' <==See README_PA4_invitems for how to do this __2__.
+alias invitems 'touch X && ls --color=never [^cen]* | sed "s/acid/nitric &/;s/silver/& bar/;s/board/computer &/;s/key/brass &/;s/X/glass jar/;s/"\^"\(ni\|gly\|fo\).*/Some &/;s/"\^"[^S].*[^:]"\$"/A &/;s/A \([aeiou]\)/An \1/;s/\(jar\):/The \1 contains:/" | grep . | tr \\n @ | sed "s/The jar contains:@"\$"//;s/\(:@\)\(.*@\)/\1     \2/;s/\(:.*acid\@\)\(S\)/\1     \2/;s/@/\n/g" ; rm X'
 
 #Section to display the room description and contents:
 #In this new assignment, we have a new problen related to the "panel lights"
