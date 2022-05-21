@@ -151,6 +151,8 @@ grep .|tr \\n @|sed "__X+1;...__Y__";rm X
 ls --color=never [^cen]* | sed 's/acid/nitric &/;s/silver/& bar/;s/board/computer &/;s/key/brass &/;s/X/glass jar/;s/^\(ni\|gly\|fo\).*/Some &/;s/^[^S].*[^:]$/A &/;s/A \([aeiou]\)/An \1/;s/\(jar\):/The \1 contains:/'
 
 touch X && ls --color=never [^cen]* | sed 's/acid/nitric &/;s/silver/& bar/;s/board/computer &/;s/key/brass &/;s/X/glass jar/;s/^\(ni\|gly\|fo\).*/Some &/;s/^[^S].*[^:]$/A &/;s/A \([aeiou]\)/An \1/;s/\(jar\):/The \1 contains:/' | grep . | tr \\n @ | sed 's/The jar contains:@$//;s/\(:@\)\(.*@\)/\1     \2/;s/\(:.*acid\@\)\(S\)/\1     \2/;s/@/\n/g';rm X
+
+touch X && ls --color=never [^cen]* | sed "s/acid/nitric &/;s/silver/& bar/;s/board/computer &/;s/key/brass &/;s/X/glass jar/;s/"\^"\(ni\|gly\|fo\).*/Some &/;s/"\^"[^S].*[^:]"\$"/A &/;s/A \([aeiou]\)/An \1/;s/\(jar\):/The \1 contains:/" | grep . | tr \\n @ | sed "s/The jar contains:@"\$"//;s/\(:@\)\(.*@\)/\1     \2/;s/\(:.*acid\@\)\(S\)/\1     \2/;s/@/\n/g" ; rm X
 ```
 
 - In the above we first use touch to create a temporary file named X, which we will need to have so that we can fix the problem with the jar when it is the only thing in the inventory.

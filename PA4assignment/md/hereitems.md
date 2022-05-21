@@ -264,7 +264,7 @@ So, what is the structure of the alias? It is this:
 alias hereitems='ls [abfgjklrs]*[^tg][pterodactyl] | sed 's__1__;s__2__;s__3____;...;s__16__' | tr \\n @ | sed -n 's__17__;...;s__X__'
 
 
-ls [abfgjklrs]*[^tg][pterodactyl] | sed 's/^\(ac\|gl\)/packet of &/;s/ acid/ nitric&/;s/^\(am\|ru\).*/valuable &/;s/^$/glass jar/;s/^board/CPU card/;s/bear/ferocious &/;s/bone/dinosaur &/;s/boulder/large &/;s/bracelet/emerald &/;s/key/shiny brass &/;s/lamp/& nearby./;s/license/bus driver`s &/;s/silver/& bar/;s/.*[^:]$/There is a &/;s/a \(food\)/some \1/;s/[^.:]$/& here./;s/a \([aeiou]\)/an \1/;s/\(jar\):/The \1 contains:/' | tr \\n @ | sed -n 's/The jar contains:@$//;s/\(:@\)\(.*@\)/\1     \2/;s/\(:.*acid here\.@\)\(T\)/\1     \2/;s/@There is a blackboard//;s/@/\n/gp'
+ls [abfgjklrs]*[^tg][pterodactyl] | sed "s/^\(ac\|gl\)/packet of &/;s/ acid/ nitric&/;s/^\(am\|ru\).*/valuable &/;s/"\^\$"/glass jar/;s/^board/CPU card/;s/bear/ferocious &/;s/bone/dinosaur &/;s/boulder/large &/;s/bracelet/emerald &/;s/key/shiny brass &/;s/lamp/& nearby./;s/license/bus driver"\`"s &/;s/silver/& bar/;s/.*[^:]"\$"/There is a &/;s/a \(food\)/some \1/;s/[^.:]"\$"/& here./;s/a \([aeiou]\)/an \1/;s/\(jar\):/The \1 contains:/" | tr \\n @ | sed -n "s/The jar contains:@"\$"//;s/\(:@\)\(.*@\)/\1     \2/;s/\(:.*acid here\.@\)\(T\)/\1     \2/;s/@There is a blackboard//;s/@/\n/gp"
 ```
 
 
