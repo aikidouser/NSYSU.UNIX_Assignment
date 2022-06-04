@@ -17,7 +17,9 @@ while ( 1 )
     #  2) Read keyboard input.
     #  3) Create a array of all of the words entered from the keyboard input.
     #  4) If the input wasn't empty, break out of this while-loop
-    ...
+    echo -n ">"
+    set cmd = $<
+    set cmd = ($cmd)
   end
 
   #Section For Movement:

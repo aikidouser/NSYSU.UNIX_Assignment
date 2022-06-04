@@ -195,7 +195,7 @@ I don't know what that is.
 
 As we see above, `x` ignores extra arguments, just like `get` and `drop`.
 
-But what if "x" gets no arguments? In that case, its behavior is surprising:
+But what if `x` gets no arguments? In that case, its behavior is surprising:
 
 ```
 >x
@@ -345,9 +345,9 @@ This behavior needs to be included in the `drop`/`throw` command.
 Also, note that moving south-east no longer kills you, since the bear is gone:
 
 ```
-   >se
-   You can't go that way.
-   >
+>se
+You can't go that way.
+>
 ```
 
 The next thing to test is to try using the key we just found:
@@ -516,17 +516,17 @@ You don't have that.
 Moving on:
 
 ```
-   >get shovel
-   Taken.
-   >e
-   Old Building hallway
-   >i
-   You currently have:
-   A lamp
-   A computer board
-   A brass key
-   A shovel
-   >
+>get shovel
+Taken.
+>e
+Old Building hallway
+>i
+You currently have:
+A lamp
+A computer board
+A brass key
+A shovel
+>
 ```
 
 OK. Let's do the correct action now, and see what the effect is:
@@ -785,8 +785,7 @@ The jar contains:
 >
 ```
 
-The above also shows how the jar displays its contents when displaying upon
-entering the place where it is laying on the ground.
+The above also shows how the jar displays its contents when displaying upon entering the place where it is laying on the ground.
 Also, notice that only the glycerine was in the jar when I dropped it, above (the acid was added after it was on the ground).
 
 Let's try getting the acid:
